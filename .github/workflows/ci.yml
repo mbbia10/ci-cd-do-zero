@@ -1,18 +1,18 @@
-name: CI + CD Básico
+name: Pipeline Profissional Treino
 
 on:
   push:
     branches: [ "main" ]
 
 jobs:
-  ci:
+  test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Baixar código
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Instalar Node
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 18
@@ -20,10 +20,36 @@ jobs:
       - name: Rodar testes
         run: npm test
 
-  cd:
+  build:
     runs-on: ubuntu-latest
-    needs: ci
+    needs: test
 
     steps:
-      - name: Simular deploy
-        run: echo "Deploy realizado com sucesso 🚀"
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build fake
+        run: |
+          mkdir dist
+          echo "Build do projeto OK" > dist/build.txt
+
+      - name: Upload artefato
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-do-projeto
+          path: dist/
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Download artefato
+        uses: actions/download-artifact@v4
+        with:
+          name: build-do-projeto
+
+      - name: Deploy fake
+        run: |
+          cat build.txt
+          echo "Deploy realizado com sucesso 🚀"
