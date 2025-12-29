@@ -1,11 +1,11 @@
-name: Pipeline CI Básica
+name: CI + CD Básico
 
 on:
   push:
     branches: [ "main" ]
 
 jobs:
-  build:
+  ci:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,3 +19,11 @@ jobs:
 
       - name: Rodar testes
         run: npm test
+
+  cd:
+    runs-on: ubuntu-latest
+    needs: ci
+
+    steps:
+      - name: Simular deploy
+        run: echo "Deploy realizado com sucesso 🚀"
