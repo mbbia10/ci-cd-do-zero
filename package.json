@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "test": "node test.js"
+    "test": "node test.js",
+    "start": "node interative.js"
   },
   "dependencies": {
     "prompt-sync": "^4.2.0"
