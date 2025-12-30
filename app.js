@@ -1,7 +1,10 @@
-function soma(a, b) {
-return a + b;
-
+const soma = (a, b) => {
+    return a + b;
 
 }
 
-module.exports = soma;
+const subtrai = (a,b) => {
+    return a - b;
+}
+
+export { soma, subtrai };
