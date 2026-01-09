@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "test": "node test.js",
-    "start": "node interative.js"
+  "start": "node server.js",
+  "test": "jest"
   },
   "dependencies": {
+    "express": "^5.2.1",
     "prompt-sync": "^4.2.0"
   }
 }
